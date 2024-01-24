@@ -26,6 +26,8 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Transforms/Passes.h"
 
+#include <iostream>
+
 #define DEBUG_TYPE "iree-llvm-cpu-lowering-pass-pipeline"
 
 namespace mlir::iree_compiler {
@@ -692,7 +694,8 @@ static void addLowerToLLVMPasses(OpPassManager &passManager,
 
 void buildLLVMCPUCodegenConfigurationPassPipeline(OpPassManager &passManager) {
   {
-    addCommonTargetExecutablePreprocessingPasses(passManager, false);
+    // Lubo std::cerr << "Lubo-2\n";
+    addCommonTargetExecutablePreprocessingPasses(passManager, false); // Lubo
     OpPassManager &modulePassManager = passManager.nest<ModuleOp>();
     modulePassManager.addNestedPass<func::FuncOp>(
         createRematerializeParallelOpsPass());
